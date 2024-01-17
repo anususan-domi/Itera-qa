@@ -1,0 +1,94 @@
+package day23;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CheckboxesDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+	
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("https://itera-qa.azurewebsites.net/home/automation");
+		driver.manage().window().maximize();
+		
+		//select specific checkbox
+		//driver.findElement(By.xpath("//input[@id='monday']")).click();
+		
+		//total number of checkboxes
+		List<WebElement> checkboxes=driver.findElements(By.xpath("//input[@class='form-check-input' and @type='checkbox']"));
+		System.out.println("Total number of checkboxes:"+checkboxes.size()); //7
+		
+		//select all the checkboxes
+		
+		/*for(int i=0;i<checkboxes.size();i++)
+		{
+			checkboxes.get(i).click();
+		}*/
+		
+		/*for(WebElement chkbox:checkboxes)
+		{
+			chkbox.click();
+		}*/
+		
+		//select last 2 checkboxes
+		// total number of checkboxes- how many check boxes to be select= index
+		// 7-2 = 5 ( starting index)
+		/*for(int i=5;i<checkboxes.size();i++)
+		{
+			checkboxes.get(i).click();
+		}*/
+		
+		//select first 2 checkboxes
+		/*for(int i=0;i<2;i++)
+		{
+			checkboxes.get(i).click();
+		}*/
+		
+		/*for(int i=0;i<checkboxes.size();i++)
+		{
+			if(i<2)
+			{
+			checkboxes.get(i).click();
+			}
+		}*/
+		
+		// clear/ un-check checkboxes
+		/*for(WebElement chkbox:checkboxes)
+		{
+			chkbox.click();
+		}
+		
+		Thread.sleep(5000);
+		
+		for(WebElement chkbox:checkboxes)
+		{
+			chkbox.click();
+		}*/
+		
+		// select check boxes which are not selected
+		// un-select checkboxes which are selected
+		
+		for(int i=0;i<2;i++)  // 2 - selected 5 - unselected
+		{
+			checkboxes.get(i).click();
+		}
+		
+		for(WebElement chkbox:checkboxes)  //2 - un select   5- select
+		{
+			if(chkbox.isSelected())
+			{
+				chkbox.click();
+			}
+			else
+			{
+				chkbox.click();
+			}
+		}
+	}
+
+}
